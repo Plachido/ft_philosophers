@@ -1,7 +1,6 @@
 NAME = philo
-
-FLAGS = -Wall -Wextra -Werror -fsanitize=address -g
-HEADER = header/philo.h
+FLAGS = -g -pthread -Wall -Wextra -Werror #-fsanitize=address 
+HEADER = philo.h
 SRCS = 	$(shell find . -name "*.c")
 
 OBJ = $(@SRCS:.c=.o)
