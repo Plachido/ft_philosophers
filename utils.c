@@ -6,7 +6,7 @@
 /*   By: plpelleg <plpelleg@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 23:06:14 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/12/03 10:04:25 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:16:16 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	ft_print(t_philo *philosopher, int code)
 	else if (code == 5)
 		printf("died");
 	else if (code == 6)
-		printf("All philosophers have eaten %d times", philosopher->parameters->n_times_to_eat);
+		printf("All philosophers have eaten %d times",
+			philosopher->parameters->n_times_to_eat);
 	printf("\n");
 	if (code < 5)
 		pthread_mutex_unlock(&philosopher->parameters->print);

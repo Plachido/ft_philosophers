@@ -6,7 +6,7 @@
 /*   By: plpelleg <plpelleg@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 14:55:09 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/12/03 10:03:57 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:18:25 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ int	ft_all_have_eaten(t_philo *philo)
 
 	i = -1;
 	while (++i < philo->parameters->n_philo)
-		if(!(philo[i].parameters->n_times_to_eat > -1
-				&& philo[i].num_times_eaten >= philo[i].parameters->n_times_to_eat))
-			break;
+		if (philo[i].num_times_eaten < philo[i].parameters->n_times_to_eat)
+			break ;
 	if (i == philo->parameters->n_philo)
 		return (1);
 	return (0);
@@ -43,7 +42,8 @@ void	*ft_end_check(void *philosopher)
 			ft_print(&philo[i], 5);
 			break ;
 		}
-		else if (ft_all_have_eaten(philo))
+		else if (philo->parameters->n_times_to_eat > -1
+			&& ft_all_have_eaten(philo))
 		{
 			ft_print(&philo[i], 6);
 			break ;

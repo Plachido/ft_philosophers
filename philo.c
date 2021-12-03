@@ -6,7 +6,7 @@
 /*   By: plpelleg <plpelleg@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 14:32:45 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/12/03 10:01:13 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:09:54 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void	*ft_routine(void *philo)
 
 	philosopher = (t_philo *)philo;
 	gettimeofday(&philosopher->last_time_eaten, NULL);
+	ft_start_eating(philosopher);
+	usleep(philosopher->parameters->time_to_eat);
+	ft_drop_forks(philosopher);
+	gettimeofday(&philosopher->last_time_eaten, NULL);
+	ft_print(philosopher, 3);
+	usleep(philosopher->parameters->time_to_sleep);
 	while (1)
 	{
 		ft_print(philosopher, 4);
