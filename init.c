@@ -6,7 +6,7 @@
 /*   By: plpelleg <plpelleg@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 20:47:28 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/12/02 23:56:49 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:03:36 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_param	*ft_parse(int argc, char **argv)
 	ft_set_param(argc, argv, parameters);
 	if (parameters -> error)
 	{
-		write(1, "MALLOC ERROR\n", 14);
+		ft_set_error(parameters);
 		ft_exit(parameters, NULL, NULL, NULL);
 		return (NULL);
 	}

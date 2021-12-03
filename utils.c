@@ -6,7 +6,7 @@
 /*   By: plpelleg <plpelleg@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 23:06:14 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/12/02 23:56:07 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:04:25 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int	ft_atoi(char *str, t_param *parameters)
 	while (str[i] != '\0')
 	{
 		if (str[i] > 57 || str[i] < 48)
-			ft_set_error(1, parameters);
+			ft_set_error(parameters);
 		res = (res * 10) + (str[i++] - 48);
 	}
 	if (res * neg <= 0)
-		ft_set_error(1, parameters);
+		ft_set_error(parameters);
 	return (res * neg);
 }
 
@@ -47,7 +47,9 @@ void	ft_print(t_philo *philosopher, int code)
 
 	pthread_mutex_lock(&philosopher->parameters->print);
 	gettimeofday(&time, NULL);
-	printf("%lu %i ", time.tv_usec, philosopher->id + 1);
+	printf("%lu ", time.tv_usec);
+	if (code < 6)
+		printf("%i ", philosopher->id + 1);
 	if (code == 1)
 		printf("has taken a fork");
 	else if (code == 2)
@@ -59,7 +61,7 @@ void	ft_print(t_philo *philosopher, int code)
 	else if (code == 5)
 		printf("died");
 	else if (code == 6)
-		printf("has eaten %d times", philosopher->parameters->n_times_to_eat);
+		printf("All philosophers have eaten %d times", philosopher->parameters->n_times_to_eat);
 	printf("\n");
 	if (code < 5)
 		pthread_mutex_unlock(&philosopher->parameters->print);
