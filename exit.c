@@ -6,7 +6,7 @@
 /*   By: plpelleg <plpelleg@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 14:55:09 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/12/03 10:18:25 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/12/03 19:48:31 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	*ft_end_check(void *philosopher)
 
 	i = -1;
 	philo = (t_philo *)philosopher;
-	gettimeofday(&now, NULL);
 	while (++i || 1)
 	{
-		if ((philo[i].last_time_eaten.tv_usec - now.tv_usec
-			) > (long int)philo[i].parameters-> time_to_die)
+		gettimeofday(&now, NULL);
+		if ((ft_get_time(now) - (ft_get_time(philo[i].last_time_eaten))
+			) > (long unsigned int)philo[i].parameters-> time_to_die)
 		{
 			ft_print(&philo[i], 5);
 			break ;
@@ -60,13 +60,11 @@ void	ft_set_error(t_param *parameters)
 	parameters -> error = 1;
 }
 
-static void	ft_close_free(t_param *parameters, pthread_mutex_t *forks,
+int	ft_exit(t_param *parameters, pthread_mutex_t *forks,
 	pthread_t *threads, t_philo *philosophers)
 {
 	int	i;
-	int	n_philo;
 
-	n_philo = parameters->n_philo;
 	i = -1;
 	if (threads)
 	{
@@ -82,17 +80,11 @@ static void	ft_close_free(t_param *parameters, pthread_mutex_t *forks,
 	}
 	if (forks)
 	{
-		while (++i < n_philo)
+		while (++i < parameters->n_philo)
 			pthread_mutex_destroy(&forks[i]);
 		free(forks);
 	}
 	if (philosophers)
 		free(philosophers);
-}
-
-int	ft_exit(t_param *parameters, pthread_mutex_t *forks,
-	pthread_t *threads, t_philo *philosophers)
-{
-	ft_close_free(parameters, forks, threads, philosophers);
 	return (0);
 }

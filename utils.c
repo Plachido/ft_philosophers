@@ -6,7 +6,7 @@
 /*   By: plpelleg <plpelleg@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 23:06:14 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/12/03 10:16:16 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/12/03 19:53:19 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,18 @@ int	ft_atoi(char *str, t_param *parameters)
 	return (res * neg);
 }
 
+long unsigned int	ft_get_time(struct timeval tv)
+{
+	return ((long int)(tv.tv_sec * 1000) + (int)(tv.tv_usec / 1000));
+}
+
 void	ft_print(t_philo *philosopher, int code)
 {
 	struct timeval	time;
 
 	pthread_mutex_lock(&philosopher->parameters->print);
 	gettimeofday(&time, NULL);
-	printf("%lu ", time.tv_usec);
+	printf("%lu ", ft_get_time(time));
 	if (code < 6)
 		printf("%i ", philosopher->id + 1);
 	if (code == 1)

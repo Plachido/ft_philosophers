@@ -6,7 +6,7 @@
 /*   By: plpelleg <plpelleg@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 14:32:33 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/12/03 10:04:19 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/12/03 19:53:10 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,24 @@ typedef struct s_philo
 }		t_philo;
 
 //init.c
-t_param	*ft_parse(int argc, char **argv);
-void	ft_initialize_mutex(t_param *parameters, pthread_mutex_t *mutex_array);
-void	ft_init_philo(pthread_mutex_t *forks, t_param *parameters,
-			t_philo *philosopher);
-void	ft_generate_threads(t_param *parameters, pthread_t *threads,
-			t_philo *philosophers);
+t_param				*ft_parse(int argc, char **argv);
+void				ft_initialize_mutex(t_param *parameters,
+						pthread_mutex_t *mutex_array);
+void				ft_init_philo(pthread_mutex_t *forks, t_param *parameters,
+						t_philo *philosopher);
+void				ft_generate_threads(t_param *parameters, pthread_t *threads,
+						t_philo *philosophers);
 
 //utils.c
-int		ft_atoi(char *str, t_param *parameters);
-void	ft_print(t_philo *philosopher, int code);
+int					ft_atoi(char *str, t_param *parameters);
+long unsigned int	ft_get_time(struct timeval tv);
+void				ft_print(t_philo *philosopher, int code);
 
 //exit.c
-int		ft_all_have_eaten(t_philo *philo);
-void	*ft_end_check(void *philosopher);
-void	ft_set_error(t_param *parameters);
-void	*ft_routine(void *args);
-int		ft_exit(t_param *parameters, pthread_mutex_t *forks,
-			pthread_t *threads, t_philo *philosophers);
+int					ft_all_have_eaten(t_philo *philo);
+void				*ft_end_check(void *philosopher);
+void				ft_set_error(t_param *parameters);
+void				*ft_routine(void *args);
+int					ft_exit(t_param *parameters, pthread_mutex_t *forks,
+						pthread_t *threads, t_philo *philosophers);
 #endif

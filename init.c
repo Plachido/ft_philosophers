@@ -6,7 +6,7 @@
 /*   By: plpelleg <plpelleg@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 20:47:28 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/12/03 10:03:36 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/12/03 19:53:28 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_init_philo(pthread_mutex_t *forks, t_param *parameters,
 			philosopher[id].right_fork = &forks[parameters->n_philo - 1];
 		else
 			philosopher[id].right_fork = &forks[id - 1];
-		if (!id)
+		if (id % 2 == 1)
 		{
 			tmp = philosopher[id].left_fork;
 			philosopher[id].left_fork = philosopher[id].right_fork;
